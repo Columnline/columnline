@@ -23,7 +23,7 @@ Existing connections at `/mcp/knowledge` continue working. Do not replace a work
 
 The signed-in [Connect your AI page](https://columnline.com/mcp/connect) carries the current setup steps. Authenticate with your own Platform account. Allow saving only when the user wants this connection to make changes. Installation is not permission to publish, send, or change access.
 
-After an update, refresh the marketplace: Claude Code `/plugin marketplace update`; Codex `codex plugin marketplace upgrade`. Refresh the client connection or start a new session if its tool catalog is stale.
+After an update, refresh the marketplace: Claude Code `/plugin marketplace update`; Codex `codex plugin marketplace upgrade`. Refreshing a marketplace is separate from updating an installed plugin. Check the installed version in Plugins, update it if needed, and start a new session. Refresh the client connection if its tool catalog is stale.
 
 ## Start with identity and discover the action
 
@@ -45,6 +45,8 @@ For a large catalog, the client sees only these starting tools. Search is how it
 - **Sites, Work, and Agents:** Discover what the live catalog actually offers. A module visible in the app may have no connected tool yet. Use the matching authorized app control if available and report any remaining gap.
 
 ## Access and recovery
+
+A successful login can still use a limited access profile. If the identity response shows a profile and the needed module is missing, report that exact result to the administrator; signing in again or allowing saving does not by itself expand the profile.
 
 If the identity is wrong, reconnect with the intended person's account. If saving is off, explain the Allow saving setting and continue useful reads. If a module or action is absent, show only what this account can see and ask its administrator to review the needed access. Never expose hidden tenant or tool names while explaining a denial.
 
