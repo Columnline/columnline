@@ -1,0 +1,19 @@
+{
+  "name": "columnline",
+  "owner": {
+    "name": "Columnline",
+    "url": "https://columnline.com"
+  },
+  "metadata": {
+    "description": "Connect your AI to the work and knowledge enabled for your Columnline account."
+  },
+  "plugins": [
+    {
+      "name": "columnline",
+      "source": "./plugins/columnline",
+      "description": "Connect your AI to the work and knowledge enabled for your Columnline account.",
+      "version": "1.0.0",
+      "category": "productivity"
+    }
+  ]
+}

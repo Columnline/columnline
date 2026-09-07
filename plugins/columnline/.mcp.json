@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "columnline": {
+      "type": "http",
+      "url": "https://api.columnline.dev/mcp/columnline"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "columnline",
+  "version": "1.0.0",
+  "description": "Connect your AI to the work and knowledge enabled for your Columnline account.",
+  "author": {
+    "name": "Columnline",
+    "url": "https://columnline.com"
+  },
+  "homepage": "https://columnline.com/mcp/connect",
+  "repository": "https://github.com/Columnline/columnline",
+  "license": "MIT",
+  "keywords": [
+    "columnline",
+    "work",
+    "knowledge"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Columnline",
+    "shortDescription": "Connect your AI to the work and knowledge enabled for your Columnline account.",
+    "longDescription": "Connect your AI to the work and knowledge enabled for your Columnline account.",
+    "developerName": "Columnline",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://columnline.com",
+    "defaultPrompt": [
+      "Check my Columnline access and show what I can do."
+    ]
+  }
+}
