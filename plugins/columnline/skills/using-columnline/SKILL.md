@@ -23,18 +23,18 @@ Existing connections at `/mcp/knowledge` continue working. Do not replace a work
 | Codex CLI | Run `codex plugin marketplace add` in Terminal/PowerShell; then open Codex and type `/plugins` inside its prompt to install. |
 | ChatGPT | Use the custom connector controls available to the account. Plan and workspace policy can limit available actions. |
 
-Adding a marketplace, installing its package, and signing in are three separate steps. Teammates use the Team package instead of installing both. The Team package also needs a separate Google sign-in. Direct MCP setup supplies the connection without the packaged skills.
+Adding a marketplace, installing its package, and signing in are three separate steps. Everyone uses the public Columnline package from https://github.com/Columnline/columnline. It requires no private GitHub access. Google Workspace is a separate connection and is not included. Direct MCP setup supplies the connection without the packaged skills.
 
 The signed-in [Connect your AI page](https://columnline.com/mcp/connect) carries the current setup steps. Authenticate with your own Platform account. Allow saving only when the user wants this connection to make changes. Installation is not permission to publish, send, or change access.
 
-After an update, refresh the marketplace: Claude Code `/plugin marketplace update`; Codex `codex plugin marketplace upgrade`. Refreshing a marketplace is separate from updating an installed plugin. Check the installed version in Plugins, update it if needed, and start a new session. Refresh the client connection if its tool catalog is stale.
+Third-party Claude Code marketplace auto-update is off by default. Enable it in marketplace settings if desired; otherwise update manually. After a release, refresh the marketplace: Claude Code `/plugin marketplace update`; Codex `codex plugin marketplace upgrade`. Refreshing a marketplace is separate from updating an installed plugin. Check the installed version in Plugins, update it if needed, and start a new session. Refresh the client connection if its tool catalog is stale.
 
 ## Start with identity and discover the action
 
-1. Call `columnline_whoami`. Read the identity, enabled `modules`, and catalog mode. Never infer access from the connection name or a remembered tenant.
+1. Call `columnline_whoami`. If identity is not directly loaded, discover and describe the identity action first; do not proceed without a verified identity. Read the identity, enabled `modules`, and catalog mode. Never infer access from the connection name or a remembered tenant.
 2. Call `columnline_find_tools` with the user's task and an optional returned module name. Search describes only actions this account can use.
 3. Call `columnline_describe_tool` for a selected result. Read its complete schema, description, and safety labels.
-4. Use `columnline_run_tool` with the discovered name and arguments. A directly available tool with that same name is also valid. Never nest the run tool.
+4. Use `columnline_read_tool` for a discovered read-only action, and `columnline_run_tool` for a write or mixed-action tool, with the discovered name and arguments. If an older connection has no read runner, its discovered run tool may execute a described read-only action. A directly available tool with that same name is also valid. Never nest the run tool.
 5. Read the saved record and report its receipt or exact missing step. A tool returning successfully does not by itself prove publication, delivery, acceptance, or business results.
 
 For a large catalog, the client sees only these starting tools. Search is how it reaches the rest. A missing action is unavailable; do not invent a name, borrow an owner's login, or bypass the service with a database write.

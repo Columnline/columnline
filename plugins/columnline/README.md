@@ -6,7 +6,7 @@ Connect your AI to the work and knowledge enabled for your own Columnline accoun
 
 1. Choose **Columnline/columnline** as your marketplace source. Adding the marketplace makes the package available; it does not install it.
 2. Install **Columnline** from that marketplace.
-3. Sign in to its connections with your own accounts and verify access.
+3. Sign in with your own Columnline account and verify access. Everyone uses this public package; no private GitHub access is required.
 
 **Codex desktop:** Plugins → Add → Add a marketplace. Source: `Columnline/columnline`; Git ref: `main`; Sparse paths: empty. Add the marketplace, then find and install **Columnline**.
 
@@ -24,8 +24,14 @@ If your AI client cannot install a marketplace, use the [signed-in setup page](h
 
 ## Updates
 
+Claude Code third-party marketplace auto-update is off by default. Enable it in marketplace settings if desired, or update manually.
+
 Codex desktop: use Upgrade beside the marketplace. Codex terminal alternative: run `codex plugin marketplace upgrade` in Terminal/PowerShell. Claude Desktop: use marketplace Update/Sync and check the installed package. Claude Code: type `/plugin marketplace update` inside Claude Code, then check `/plugin` → Installed and update the package if offered. Refreshing the catalog and updating an installed package are separate steps. Confirm the installed version and start a new session.
 
-The package teaches discovery, source-backed Knowledge work, and careful Your Plan preparation. Its instructions never grant access. A tool may be unavailable for your role; use only what your live connection returns. Public directory listings are separate from this direct installation.
+The package teaches daily work review, Leads and Outreach, Sites performance, Content preparation, agent collaboration, source-backed Knowledge and Materials work, and careful Your Plan preparation. Its instructions never grant access. A tool may be unavailable for your role; use only what your live connection returns. Public directory listings are separate from this direct installation.
 
 This repository is generated from Columnline's maintained source. Report a problem through your Columnline contact; changes belong in the source and arrive here as reviewed releases.
+
+## Moving from Columnline Team
+
+Install this public package, sign in as yourself, and verify an authorized real answer before removing the old Columnline Team package. Preserve unrelated connections. Google Workspace remains a separate connection. The private marketplace is retired only after replacement acceptance; removing a package does not automatically revoke a server grant.

@@ -49,9 +49,15 @@ grant access. Access is whatever the live identity resolves to on this request.
 Connect through the client's own configuration, never a secret checked into the
 repo.
 
-1. Find the available tool group that exposes `mcp_whoami`,
-   `knowledge_list_bases`, `knowledge_search`, and `knowledge_get`.
-2. Call `mcp_whoami` first. It reports who this connection is (a person
+When the connection exposes `columnline_whoami` and `columnline_find_tools`, use
+`using-columnline` first: discover the Knowledge action, describe its current
+schema, and invoke it through the read or write runner as appropriate. The
+Knowledge names below can be discovered rather than directly loaded. Do not
+conclude access is missing from the initial tool list alone.
+
+1. Find the available or discoverable Knowledge list, search and get actions.
+   Identity may come from the shared Columnline action; a legacy identity alias is not required.
+2. Use the identity returned by `columnline_whoami`, or call `mcp_whoami` on a legacy connection. It reports who this connection is (a person
    resolved live from their Platform identity, or a machine bound to an
    explicit profile) and the shape of their reach. Read the identity from the
    tool; never infer it from the connection name or the tool prefix.
@@ -63,7 +69,7 @@ repo.
    zero Knowledge access.
 4. Use a Knowledge-base ID for search and get. Internal collection pairings
    are compatibility detail and do not belong in ordinary reasoning.
-5. If no Knowledge tool group exists at all, continue with other authorized
+5. If neither direct tools nor authorized discovery returns Knowledge actions, continue with other authorized
    sources and say: **“Columnline Knowledge was not checked because this
    session has no authorized Knowledge connection.”** Do not invent a
    different storage or borrow another person's credential.
@@ -136,16 +142,16 @@ connection. Discover it by capability every time; a connection name is at most a
 recovery hint, never an authorization shortcut, and never something to hard-code
 into reasoning.
 
-If the connection is missing, logged out, or `mcp_whoami` does not resolve:
+If the connection is missing, logged out, or its discovered identity action does not resolve:
 
 1. Recheck the connection. In Codex, inspect `codex mcp list` and `codex mcp get
    <name>`; in Claude Code, inspect `/mcp`. Reconnect and sign in with this account
    when asked.
-2. Once `mcp_whoami` resolves, call `knowledge_list_bases` again. Access follows
+2. Once the identity action resolves, call `knowledge_list_bases` again. Access follows
    the signed-in Platform identity on every request, so a fresh login is what
    repairs an expired or logged-out connection.
 
-If `mcp_whoami` resolves a real person or machine but `knowledge_list_bases`
+If the identity action resolves a real person or machine but `knowledge_list_bases`
 returns nothing, that is the honest state for this identity: it has no entitled
 bases. Report it plainly and stop the Knowledge path. Do not widen any
 Knowledge-base or page permission to force a result, do not provision a standing
@@ -222,8 +228,10 @@ closed rather than escalating.
 
 When more than one authorized base could plausibly hold the save, ask which one
 before writing rather than guessing a destination. After a write, confirm it
-with the receipt and an authenticated `knowledge_get` read-back, not the receipt
-alone.
+with the exact returned disposition. For a saved Page revision, read that Page
+back through the authorized get action. For a Fact capture or proposal, retain
+its returned identity and disposition; do not invent a Page or claim curation
+is complete. Use the returned verification action when one is available.
 
 If a read uncovers stale Knowledge but no write was requested, report the exact
 gap and proposed destination. Do not silently “help” by changing the wiki.
