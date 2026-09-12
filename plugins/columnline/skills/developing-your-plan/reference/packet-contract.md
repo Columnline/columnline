@@ -9,7 +9,7 @@ no access and a named tool may not be available in a given connection.
 The normal shared MCP operations are `your_plan_list`, `your_plan_get`,
 `your_plan_save_draft`, `your_plan_publish_revision`, and
 `your_plan_publish_update`. The latter two publish client-visible content and
-require explicit authorization. `your_plan_get` includes live Linear truth.
+require explicit authorization. `your_plan_get` includes Linear-backed information and, when mirror reads are enabled, `linearSync` freshness. A stale snapshot is context, not proof of current provider state. Never retry an uncertain publish blindly; preserve its receipt and original intent.
 
 **Capability boundaries:** these tools do not, by their names or existence,
 provide new-plan creation, lane reordering, meeting editing, acceptance, rejection,

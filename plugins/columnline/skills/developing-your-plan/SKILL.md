@@ -63,8 +63,7 @@ proposed steps through a real finish. Name actors, systems, inputs, outputs,
 human decisions, handoffs, exceptions, and manual fallback. Expand a subprocess
 when its hidden steps could change scope, ownership, effort, or acceptance.
 
-Create a useful current/future process map when it clarifies the job. Use the canonical
-Figma workflow when recurring human interaction needs a prototype. Do not draw
+Create a useful current/future process map when it clarifies the job. When recurring human interaction needs a prototype, use an available design tool or ask the responsible operator for the reviewed design workflow. Do not draw
 every issue, force the fixed legacy Client/Agent/App lanes onto a richer process,
 invent a prototype approval, or redesign an accepted frame in code. Link the
 exact reviewable artifact/version and record what is accepted versus proposed.
