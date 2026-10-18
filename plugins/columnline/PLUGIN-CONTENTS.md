@@ -1,6 +1,6 @@
 # Package contents
 
-Version: 1.0.3
+Version: 1.1.0
 
 - using-columnline
 - developing-your-plan
@@ -10,6 +10,7 @@ Version: 1.0.3
 - managing-pursuit-materials
 - reviewing-columnline-work
 - working-columnline-leads
+- running-outreach-campaigns
 - analyzing-columnline-sites
 - preparing-columnline-content
 - working-with-columnline-agents

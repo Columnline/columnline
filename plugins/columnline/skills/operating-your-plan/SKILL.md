@@ -1,13 +1,13 @@
 ---
 name: operating-your-plan
-description: Operate and edit Columnline Your Plan across its Linear-backed project truth and Platform-backed plan content. Use when the teammate or another operator asks Codex to change a client plan, process map, outcomes, plan copy, owners, milestones, lane order, meetings, proof, acceptance, or lifecycle state; or asks what in Linear will appear in Your Plan.
+description: Operate and edit Columnline Your Plan across its Linear-backed project truth and Platform-backed plan content. Use when an operator asks Codex to change a client plan, process map, outcomes, plan copy, owners, milestones, lane order, meetings, proof, acceptance, or lifecycle state; asks what in Linear will appear in Your Plan; or asks to prep, build, update or publish a client meeting agenda ("get the agenda ready", "pull up the meeting stuff", "what we did last week", "weekly check-in").
 ---
 
 # Operating Your Plan
 
 ## In plain English
 
-Your Plan is one client view fed by two systems. Linear decides which Work appears, where it sits, and when its milestones are due. The Platform holds the client-facing promise, process maps, outcomes, acceptance, updates, and meetings. This skill helps Codex make the requested change in the right place, then check both systems so the teammate does not have to know the plumbing.
+Your Plan is one client view fed by two systems. Linear decides which Work appears, where it sits, and when its milestones are due. The Platform holds the client-facing promise, process maps, outcomes, acceptance, updates, and meetings. This skill helps Codex make the requested change in the right place, then check both systems so the operator does not have to know the plumbing.
 
 ## Proposal development
 
@@ -36,18 +36,31 @@ Do not make a write just because this skill loaded. First explain the current tr
 | Process-map links and stage labels | Platform revision artifacts | Open **Manage plan → Structured packet fields → artifacts**; preserve every unrelated artifact |
 | Outcomes, baseline, target, current, source, window, response when missed | Platform revision | Open **Manage plan**; publish a new revision if client-facing truth changes |
 | Status, proof, next step | Platform update | Use the matching publish-update control |
-| Meeting occurrence, series, agenda, recap, recording or transcript source, scratchpad | Platform Meetings | Edit the exact occurrence or series and re-open it after save |
+| Meeting occurrence, series, agenda, recap, recording or transcript source, scratchpad | Platform Meetings | Edit the exact occurrence or series and re-open it after save. For a client check-in agenda, follow [reference/meeting-agendas.md](reference/meeting-agendas.md) |
 | Acceptance, correction, pause, retire, restore, completion | Platform lifecycle record | Use the named governed action; never edit a receipt or accepted revision in place |
 
 Linear is execution truth. The Platform is promise and evidence truth. Do not copy one system over the other when they disagree; stop, report the difference, and fix the authoritative source.
 
-## the teammate workflow
+## Account snapshot
+
+Each tenant's Your Plan has a **Snapshot** tab, right after Overview. It is one living page that says where the account stands: what we run, open asks, what we are waiting on, what was done recently, and the next meeting. It uses the same Markdown as meeting agendas (headings, bullets, bold, links, tables). Only Columnline platform admins see it; clients do not.
+
+- **Every save is a version.** Version history shows what changed line by line, and any older version can be restored. A restore copies it forward, so nothing is lost.
+- **Through the Columnline connection (preferred for AI apps):** `your_plan_snapshot_get` reads it; `your_plan_snapshot_save` saves a version (pass `base_revision_id` from the read; a 409 means a newer save landed, so read again and merge).
+- **Meeting agendas through the same connection:** `your_plan_meetings` lists upcoming meetings with the published agenda, newest draft and recap; `your_plan_meeting_agenda_save` publishes by default, so the agenda or recap is visible right away; pass `publish: false` to keep a private draft when the owner says it is not ready.
+- **Or from a script** with the Columnline API key (the `Columnline-API` item in the internal API vault, sent as the `x-api-key` header). Never print the key.
+  - Read: `GET https://columnline.com/api/engagement-plans/snapshot?tenantId=<tenant>` returns `current`, `revisions`, `canEdit`.
+  - Save: `PUT` the same address with `{"markdown": "...", "changeSummary": "one short line"}`. It saves as "Account bot".
+  - Restore: `POST` the same address with `{"action": "restore", "revisionId": "<id>"}`.
+- **Write it so it can be shown on screen share:** plain and forward, source links inline, no ticket codes in the visible text, no pricing or renewal talk.
+
+## Operator workflow
 
 ### 1. Connect Codex once
 
 Open https://columnline.com/mcp/connect while signed into the Platform. Follow the Codex setup steps, sign in with the same Platform account, and choose Allow saving when editing is intended.
 
-No database key, Linear API key, or 1Password access belongs on the teammate's computer. Those credentials remain server-side.
+No database key, Linear API key, or 1Password access belongs on the operator's computer. Those credentials remain server-side.
 
 Start every new Codex setup with:
 
@@ -59,7 +72,7 @@ The expected result is the intended signed-in operator’s own identity and live
 
 Use `your_plan_list` to find the exact tenant and plan. Then call `your_plan_get` immediately before every write. The returned revision ID and checksum are the safety seal: the save is refused if someone changed the plan after it was read.
 
-The plan read includes Linear-backed lane, order, status, and milestone data. When mirror reads are enabled, this comes from the last verified saved copy. Inspect `linearSync`: `ready` means complete recent coverage; `stale` means saved information with delayed or incomplete verification; `waiting` means initialization is incomplete. Reading the plan does not force a Linear refresh. If the request is to change the Linear project itself—its lane, Customer, team, or order—use Linear's own UI or OAuth connection. The repo `plan-audit` command remains an internal privileged fallback; it is not the teammate's setup path.
+The plan read includes Linear-backed lane, order, status, and milestone data. When mirror reads are enabled, this comes from the last verified saved copy. Inspect `linearSync`: `ready` means complete recent coverage; `stale` means saved information with delayed or incomplete verification; `waiting` means initialization is incomplete. Reading the plan does not force a Linear refresh. If the request is to change the Linear project itself—its lane, Customer, team, or order—use Linear's own UI or OAuth connection. The repo `plan-audit` command remains an internal privileged fallback; it is not the operator's setup path.
 
 A timeout is not proof that an edit failed. Keep the original operation key. For a pending milestone or roster change, use the app **Check change** control or `your_plan_operation_get`. Do not submit the same intent with a new key. Report an operator-required receipt instead of attempting a broad undo. Meetings remains available independently of plan-source freshness.
 
@@ -79,15 +92,15 @@ If the request changes the client promise, priority order, final acceptance, or 
 
 For lane/order changes, use the authorized Linear controls and a human position. Repo-only fallback commands belong to an internal operator.
 
-For Platform content, call `your_plan_save_draft` first. Use `editor.settings` and `editor.revision` from `your_plan_get`, or continue the complete saved `operatorDraft.payload` after checking its baseline. Never copy raw `plan.revision` server metadata into a write. Resolve `editor.issues` with real answers; schema readiness is not acceptance readiness. Change only the requested fields and preserve everything else. Use `your_plan_publish_revision` only after the draft is reviewed and the user explicitly asks to publish. Use `your_plan_publish_update` for a status, proof, or next-step update. Always report the returned saved read-back.
+For Platform content, call `your_plan_save_draft` first. Use `editor.settings` and `editor.revision` from `your_plan_get`, or continue the complete saved `operatorDraft.payload` after checking its baseline. Never copy raw `plan.revision` server metadata into a write. Resolve `editor.issues` with real answers; schema readiness is not acceptance readiness. Change only the requested fields and preserve everything else. `editor.revision` carries the saved process maps; leaving `processMap` out keeps them, and only an explicit `null` removes them. Use `your_plan_publish_revision` only after the draft is reviewed and the user explicitly asks to publish. Use `your_plan_publish_update` for a status, proof, or next-step update. Always report the returned saved read-back.
 
-**Creating a plan.** There is no create screen in the app, by design. A Linear project inside the Your Plan lanes that has no plan record is created through the shared MCP in two calls: `your_plan_setup_options` with the tenant id returns the tenant's lane projects (each with `hasPlan`), its cards, its configured external delivery records, and its seats; then `your_plan_create` takes the chosen `linearProjectId`, one tenant-owned destination, an acceptor seat, and the complete first revision in the same shape `your_plan_save_draft` accepts. When the Work has no card yet, pass `external_destination` (an `https://` link such as the Linear project or a shared folder) with `destinationKind: "other"` and the record is created in the same call. The tool reads the new plan back; creation is neither publication nor acceptance. The Linear project itself, its Customer, team, milestone, and lane label are still set in Linear first, or the create is refused with the reason.
+**Creating a plan.** There is no create screen in the app, by design. A Linear project inside the Your Plan lanes that has no plan record is created through the shared MCP in two calls: `your_plan_setup_options` with the tenant id returns the tenant's lane projects (each with `hasPlan`), its cards, its configured external delivery records, and its seats; then `your_plan_create` takes the chosen `linearProjectId`, one tenant-owned destination, an acceptor seat, and the complete first revision in the same shape `your_plan_save_draft` accepts. When the Work has no card yet, pass `external_destination` (an `https://` link such as the Linear project or a shared folder) with `destinationKind: "other"` and the record is created in the same call. The tool reads the new plan back. **Creation publishes the first revision to the client immediately** (the create RPC writes revision 1 as published; it is never acceptance), so the create packet must be client-safe: internal notes, open commercial questions, and Columnline-only text stay in Linear. The Linear project itself, its Customer, team, milestone, and lane label are still set in Linear first, or the create is refused with the reason.
 
 The shared MCP does not yet expose lane, meeting, or lifecycle actions. Discover the live catalog; use the matching Platform control as the same authorized operator or their Linear OAuth connection when an action is absent. Never require repo credentials or borrow the owner identity. Report an unavailable action honestly.
 
 The browser at `https://columnline.com/app?workspace=your-plan` remains the visual review surface. It is not required to get credentials or make the structured edit.
 
-When Codex has browser control, it may operate the existing controls for the teammate. If browser control is unavailable, give the teammate the exact field and value to paste; do not replace the governed action with a direct database write.
+When Codex has browser control, it may operate the existing controls for the operator. If browser control is unavailable, give the operator the exact field and value to paste; do not replace the governed action with a direct database write.
 
 ### 5. Process maps
 
@@ -115,9 +128,9 @@ Use `stage: "future"` for future-state maps. The source must be a durable HTTPS 
 
 Call `your_plan_get` again and confirm the changed field, revision number or draft checksum. Its Linear-backed fields must still show the expected lane, order, status, and milestones. If the change was made directly in Linear, read that project back there too. Re-open the exact Your Plan page for a visual preview. For a publish, verify the new revision and confirm the prior accepted revision still exists unchanged.
 
-Report these as separate facts: edited, draft saved, published, Linear reconciled, deployed, the teammate-tested, client-enabled, client-accepted, and Operating. One does not imply another.
+Report these as separate facts: edited, draft saved, published, Linear reconciled, deployed, operator-tested, client-enabled, client-accepted, and Operating. One does not imply another.
 
-## Copy-paste prompt for the teammate
+## Copy-paste prompt for an operator
 
 > Use `$operating-your-plan` to update Your Plan for **[client] / [Work project]**. First use the `columnline` connection to check my identity and editing access. Then read the complete current plan, including its live Linear-backed lane and milestones. I want to **[describe the change]**. Tell me which system owns it. Save a private draft first, preserve every unrelated field and every accepted revision, and show me the read-back. Publish only if I explicitly approve it. Do not merge or deploy code.
 

@@ -21,7 +21,7 @@ separate slide deck, PDF pair, or copy of the agreement in a repo file.
 
 Use the live Columnline catalog for governed reads and writes. A skill supplies guidance, never permissions. Read the exact plan and its current editor packet before saving.
 
-Use the **shared Columnline MCP** that the teammate and other authorized operators
+Use the **shared Columnline MCP** that authorized operators
 connect to. Discover its tools, call `columnline_whoami`, and confirm the actual
 identity and read/write capabilities. Use `your_plan_list` then `your_plan_get`.
 Do not make this workflow depend on a repo `.env`, database key, shell script,
@@ -131,9 +131,11 @@ page as the intended operator. API-valid is not decision-ready.
 If the Work has no plan record yet, create it first: `your_plan_setup_options`
 for the tenant, then `your_plan_create` with the chosen lane project, one
 tenant-owned destination (or a new `external_destination` link when the Work
-has no card), an acceptor seat, and the complete first revision. Creation is
-neither publication nor acceptance; the client sees nothing new until a revision
-is published. Details in the discovered plan tools § Creating a plan.
+has no card), an acceptor seat, and the complete first revision. **Creation
+publishes that first revision to the client immediately** (it is never
+acceptance). Every field in the create packet must be client-safe: internal
+notes, open commercial questions, and anything meant only for Columnline stay in
+Linear. Details in the discovered plan tools § Creating a plan.
 
 If facts are incomplete, save an honest partial draft when the API permits it;
 put the exact unresolved questions and their owners in nextStep and the relevant
