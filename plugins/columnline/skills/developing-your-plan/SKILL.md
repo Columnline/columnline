@@ -21,7 +21,7 @@ separate slide deck, PDF pair, or copy of the agreement in a repo file.
 
 Use the live Columnline catalog for governed reads and writes. A skill supplies guidance, never permissions. Read the exact plan and its current editor packet before saving.
 
-Use the **shared Columnline MCP** that the teammate and other authorized operators
+Use the **shared Columnline MCP** that authorized operators
 connect to. Discover its tools, call `columnline_whoami`, and confirm the actual
 identity and read/write capabilities. Use `your_plan_list` then `your_plan_get`.
 Do not make this workflow depend on a repo `.env`, database key, shell script,
@@ -128,18 +128,33 @@ MCP revision guards and **editor.settings / editor.revision**, not the raw
 read model. Save a private draft first, then get it again and inspect the actual
 page as the intended operator. API-valid is not decision-ready.
 
-If the Work has no plan record yet, create it first: `your_plan_setup_options`
-for the tenant, then `your_plan_create` with the chosen lane project, one
-tenant-owned destination (or a new `external_destination` link when the Work
-has no card), an acceptor seat, and the complete first revision. Creation is
-neither publication nor acceptance; the client sees nothing new until a revision
-is published. Details in the discovered plan tools § Creating a plan.
+If the Work has no plan record yet, `your_plan_setup_options` may be used to
+read the tenant's available projects, destinations and seats. Prepare the complete
+client-safe first revision and show it for review before calling `your_plan_create`.
+**Creation publishes that first revision to the client immediately** (it is never
+acceptance). Call create only after the user explicitly authorizes immediate client
+publication of that reviewed packet. A request to prepare or draft alone does not
+authorize creation. Without publication authorization, preserve the draft locally
+or in the authorized project document and report that no Platform plan was saved
+or published.
+
+The authorized create packet needs the chosen lane project, one tenant-owned
+destination (or a new `external_destination` link when the Work has no card), an
+acceptor seat, and the complete first revision. Every field must be client-safe:
+internal notes, open commercial questions, and anything meant only for Columnline
+stay in Linear. Details in the discovered plan tools § Creating a plan.
 
 If facts are incomplete, save an honest partial draft when the API permits it;
 put the exact unresolved questions and their owners in nextStep and the relevant
 section. Do not invent identity/destination fields to force a save. If a draft
 cannot be saved, report that limitation and preserve the work in the authorized
 project document; do not claim a saved Platform proposal.
+
+When the proposal itself is a document (a PDF, a quote) and it was made in our
+own library while the client was a lead, put it on the plan item with Materials
+**Copy to a client**, picking this plan item. That makes the client's own copy
+and shows it under the item's Attached documents. Do not re-upload it or paste a
+private link into a plan field. See `managing-pursuit-materials` § Links.
 
 Publish only after the user explicitly authorizes the reviewed revision. Publishing
 is not client acceptance. Acceptance, activation, delivery, adoption, and Operating

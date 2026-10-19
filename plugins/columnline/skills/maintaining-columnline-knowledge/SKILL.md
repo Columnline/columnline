@@ -12,7 +12,7 @@ description: >-
   learn something. Also use when a teammate wants to contribute to a shared
   wiki or when maintaining a wiki purpose manifest. Uses the real authorized
   Agent Console curator and returns a truthful receipt; never invents a second
-  knowledge store or treats session memory as company truth. For designing a
+  knowledge store. For designing a
   new knowledge system, involve its authorized administrator. For read-only context
   questions, use using-columnline-knowledge.
 ---
@@ -87,7 +87,7 @@ new wiki exists.
 Update the live owner first or in the same operation, then add only the durable
 context to the wiki.
 
-Example: “the teammate owns the weekly client one-pager now.” Linear owns the Work
+Example: “A different teammate owns the weekly client one-pager now.” Linear owns the Work
 owner. The wiki may record why the operating model changed and link to the Work,
 but it must not become the place that future sessions read for the current
 assignee.
@@ -131,6 +131,40 @@ tools, and migrations may still contain `bronze`, `silver`, or `gold`; treat
 those as compatibility names, not the words used in new guidance. A knowledge
 base may use one collection or the full staged pattern. Follow its manifest and
 preserve whatever lineage it requires.
+
+## Read the page before you change it
+
+A page in a well-built knowledge base states, near the top, what it is for and
+what a good version of it looks like. That block is a contract with every
+future editor, human or agent. It is the only thing standing between a curated
+base and a pile of loosely related paragraphs six months from now.
+
+**So: read the target page before writing to it.** Not the search snippet, the
+page. `knowledge_get` on the document id returns the content and the active
+revision; use both. Then check three things.
+
+1. **Does this change belong on this page at all?** If the page says what does
+   not belong there and the change is that thing, it goes somewhere else. A new
+   page is a structure proposal, not a silent creation.
+2. **Does the change fit the page's stated purpose and shape?** Match the
+   existing headings and voice rather than appending a differently-shaped block
+   to the end.
+3. **Are you about to overwrite the contract itself?** Replacing a whole page
+   usually rewrites its "what this page is for" block as a side effect. That is
+   the failure this rule exists to prevent.
+
+**Changing a page's stated purpose is allowed, and is a decision.** When the
+purpose is genuinely wrong or the page has outgrown it, rewrite it deliberately
+and say in the receipt that you did. What is never acceptable is losing it by
+accident, or writing a replacement page as though the contract had never been
+there.
+
+**Pass the revision id you read.** `knowledge_save` with `expected_revision_id`
+fails rather than clobbering someone else's newer edit. A save that skips it is
+a save that can silently destroy work.
+
+This applies to every knowledge base reached over MCP, including from the
+published Columnline plugin, which is generated from this skill.
 
 ## Use the real write path
 
