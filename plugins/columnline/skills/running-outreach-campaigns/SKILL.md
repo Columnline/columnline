@@ -30,17 +30,19 @@ Write one short plan and get one yes. Do not ask five separate questions later. 
 - The groups (one campaign each) and the fit rule for each: company size, titles, industry, area.
 - The offer in one sentence, and the copy for each step (see Step 4).
 - How the leads will be found, the sample size (10), the full size per group, and the **spending ceiling** in dollars across all tools.
-- How deep verification goes (verified email required; phone optional).
+- How deep verification goes (verified email required for saving contact samples; phone optional), which audience checks apply to every included row, and which fit checks are sampled. Separate hard exclusions from useful but optional research.
 - What needs a human decision: sample fit, the exact full audience and load confirmation, the batch record, and launch.
 
 A yes to this plan covers sourcing, enrichment and saving up to the ceiling. It does not approve an unseen full audience, replace a tool's required load confirmation, or permit sending. Reuse approvals that actually cover the unchanged decision; do not ask for the same decision twice. If the plan changes (new group, higher spend, different offer), ask again.
 
 ## Step 2: Sample, then prove fit
 
-1. Pull 10 per group with the cheapest source that fits.
-2. Save them with `pursuits_source_samples` (`begin → append → complete → get`). This tool holds **at most 25 people**. It is only for samples.
-3. Prove the fit to the person: for each of the 10, one line on why it matches the rule. Count matches. If fewer than 8 of 10 fit, change the search (usually narrower titles or size) and pull a new sample. Do not scale a bad sample.
-4. Submit the sample for review with `pursuits_reviews` and read back its review id and state. A "looks good" in chat is recorded as the approval; it does not run anything by itself.
+1. Choose the cheapest source for the agreed audience. A mixed provider feed need not contain ten perfect leads. Preserve every raw row and source ID; distinguish obvious wrong fit from missing evidence. Exclude known non-target businesses, duplicates and contradicted identities. Do not broaden the audience merely because discovery was broad.
+2. Default to ten raw rows. If the person chooses **broader sourcing followed by filtering**, agree the raw acquisition limit, cost policy, replacement scope and research time limit first. Freeze ten candidates from the filtered stream before detailed fit review; retain the raw count, rejects and reasons so selection is transparent. Do not replace failed members of that frozen sample to inflate its pass rate. A previously failed raw sample stays failed; changing to a filtered-stream test is a recorded method change, not a retroactive pass.
+3. Research companies once, using supplied descriptions and estimates first. Use one supported estimate when that meets the brief; do not require independent corroboration of every provider field. Missing phone, LinkedIn, a fresh buying trigger or extra project research does not fail a lead unless the brief makes it required. Stop at the agreed research limit and retain unresolved cases separately. Known wrong fit stays excluded. Required numeric headcount and credible conflicting evidence remain governed by the brief.
+4. Show the exact ten-person sample with a one-line fit reason per row, uncertainty, raw-to-filtered yield, actual cost and effort. The default threshold remains eight of ten; for an explicitly planned filter-first method it applies to the frozen filtered sample. If fewer than eight fit, refine once within actual authorization, then stop dependent scaling after a second failure. Do not require every lead to be perfect or call unchecked full-list contacts individually proven.
+5. Find/verify work emails for the useful shortlist, then save with `pursuits_source_samples` (`begin → append → complete → get`, at most 25). Keep candidates missing required save fields in private preparation files; do not invent email addresses to satisfy storage. Cheap batch exclusions can run early; deeper sending-history checks may wait until audience preparation. This staging choice never grants send clearance.
+6. Inspect the saved source and submit its exact revision with `pursuits_reviews`: `action: submit`, `tenantId`, `kind: sample`, `sourceId`, `expectedRevision`, a UUID `requestId`, and `context: {channel, sessionRef, skill?}`. **Omit `workspace` on submit**; it is a list filter. Preserve the same request UUID only for an identical request after uncertainty, and read the existing review before retrying. `get` uses `reviewId`; saving or automatic review creation is not explicit submission. Read back the review ID/state. Record an actual human approval against that revision without asking the person to repeat an unchanged approval. Submit and approval never send.
 
 ## Step 3: Full list
 
@@ -80,7 +82,7 @@ Launching sends real email. Before it, show: each campaign, its lead count, the 
 
 ## Working efficiently
 
-- Read each record once and keep what you learned. Do not re-read the same lead or campaign to check a value you already have.
+- Read each unchanged evidence revision once and keep it. Re-read consequential state before a write or after uncertainty; do not repeat research to fill optional fields. Batch company classification and deduplication before paid email enrichment.
 - Check a vendor's credit balance once before a paid run and once after, not per contact. Per-contact checks hit hourly limits.
 - Run independent groups in parallel.
 - Save files and receipts in one working folder per push, named for the push.
