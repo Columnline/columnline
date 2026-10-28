@@ -24,8 +24,9 @@ Use the live Columnline catalog for governed reads and writes. A skill supplies 
 Use the **shared Columnline MCP** that authorized operators
 connect to. Discover its tools, call `columnline_whoami`, and confirm the actual
 identity and read/write capabilities. Use `your_plan_list` then `your_plan_get`.
-Do not make this workflow depend on a repo `.env`, database key, shell script,
-owner credential, or impersonating the owner. Resolve Knowledge access separately
+This workflow runs only through the signed-in operator's own Columnline
+connection, never through a database key, a shell script, another person's
+login, or acting as the owner. Resolve Knowledge access separately
 with `using-columnline-knowledge`; lack of Knowledge access is a visible gap.
 The shared connection supplies current role-specific instructions.
 
