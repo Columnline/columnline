@@ -5,9 +5,15 @@ description: Operate and edit Columnline Your Plan across its Linear-backed proj
 
 # Operating Your Plan
 
+**In the app it is called Initiatives** (the owner, Oct 25, 2026): the rail, the page and the client view say Initiatives, and its tabs are Snapshot, Meetings, Initiatives (the board), Outcomes and Activity. Tell people to click those words. The code, the addresses (`workspace=your-plan`) and the tools (`your_plan_*`) keep the Your Plan name.
+
 ## In plain English
 
 Your Plan is one client view fed by two systems. Linear decides which Work appears, where it sits, and when its milestones are due. The Platform holds the client-facing promise, process maps, outcomes, acceptance, updates, and meetings. This skill helps Codex make the requested change in the right place, then check both systems so the operator does not have to know the plumbing.
+
+## Pipeline commands
+
+The everyday steps on an initiative ("put a plan together", "hold it for an internal review", "deliver the plan", "they said yes", "mark it delivered", "cancel it") have one recipe: driving-work-end-to-end/reference/commands.md. Create a plan with `hold_for_review` so the client is not asked before our own review; `your_plan_hold` pulls back a plan already sent, `your_plan_publish_revision` delivers it, and `your_plan_record_yes` records a yes given by email, call or Slack.
 
 ## Proposal development
 
@@ -43,11 +49,11 @@ Linear is execution truth. The Platform is promise and evidence truth. Do not co
 
 ## Account snapshot
 
-Each tenant's Your Plan has a **Snapshot** tab, right after Overview. It is one living page that says where the account stands: what we run, open asks, what we are waiting on, what was done recently, and the next meeting. It uses the same Markdown as meeting agendas (headings, bullets, bold, links, tables). Only Columnline platform admins see it; clients do not.
+Each tenant's Your Plan has a **Snapshot** tab, right after Overview. It is the account state: three lines at the top (most important, going well, at risk), then a ranked list of what the client's business should do next and how we help, then the detail (what we are waiting on, open asks, decisions, meetings, what we run), folded away in the tab. It uses the same Markdown as meeting agendas (headings, bullets, bold, links, tables). **Before any save, load editing-account-snapshots**: it owns the page shape, the rules and the checker. The client's own people read it too, read-only: the current version only, with Linear, GitHub and Gmail links removed, and only once the page is in that shape. Saving and version history stay with Columnline staff and the account bots.
 
 - **Every save is a version.** Version history shows what changed line by line, and any older version can be restored. A restore copies it forward, so nothing is lost.
 - **Through the Columnline connection (preferred for AI apps):** `your_plan_snapshot_get` reads it; `your_plan_snapshot_save` saves a version (pass `base_revision_id` from the read; a 409 means a newer save landed, so read again and merge).
-- **Meeting agendas through the same connection:** `your_plan_meetings` lists upcoming meetings with the published agenda, newest draft and recap; `your_plan_meeting_agenda_save` publishes by default, so the agenda or recap is visible right away; pass `publish: false` to keep a private draft when the owner says it is not ready.
+- **Meeting agendas through the same connection:** `your_plan_meetings` lists upcoming meetings with the published agenda, newest draft, recap and `agendaState` (one sentence: published, private draft, or the series agenda from an earlier meeting). A meeting in a series also returns `lastTime` (the meeting it follows, with its agenda, recap and `openItems`) and `nextAgendaStarter`. Start the next agenda with `nextAgendaStarter` and build from `lastTime`, so nothing open is dropped. `your_plan_meeting_agenda_save` publishes by default, so the agenda or recap is visible right away; pass `publish: false` to keep a private draft when the owner says it is not ready. Repeat the save's `state` sentence when you report it. Each meeting also returns `comments` (who said what about its agenda or recap, and when) and `fullScreenUrl` (the meeting full screen, the link to share with the team); `your_plan_meeting_comment` leaves a comment under your name on the agenda or the recap.
 - Discover and describe these actions before use; their live schema and your own access decide what is available. If an action is absent, use the matching Platform control as the same signed-in operator, or report the missing action. Never obtain an internal key or another person's login to replace it.
 - **Write it so it can be shown on screen share:** plain and forward, source links inline, no ticket codes in the visible text, no pricing or renewal talk.
 

@@ -34,7 +34,9 @@ DM links only open for the people in that DM. That is fine: the owner is the one
 
 Check identity with `columnline_whoami`, then discover and describe `your_plan_meetings` when it is available. Read the intended tenant and occurrence, its current published agenda, newest draft and recap. Use the returned meeting identity, time and source links. If the action is absent, open the meeting in Your Plan under the same person's existing access. Missing access is a gap to report, never a reason to obtain database credentials or another person's identity.
 
-An occurrence with no agenda of its own shows the series' last agenda in the app. That is last week's agenda. Always give today's occurrence its own.
+An occurrence with no agenda of its own shows the series' last agenda in the app, labeled "From an earlier meeting in the series". That is an old agenda. Always give today's occurrence its own.
+
+**Start from last time.** A meeting in a series returns `lastTime`: the meeting it follows, with its agenda, recap and open items. For the build team's standups that is the previous weekday (same people, same time), not last week's same weekday. Open the new agenda with `nextAgendaStarter` (last time's open items as unchecked boxes), then write the rest. In the app, Prepare agenda starts with the same section, and the meeting shows a Last time panel.
 
 ## Save the agenda
 
@@ -43,6 +45,10 @@ Discover and describe `your_plan_meeting_agenda_save`. It publishes by default, 
 Read back the saved draft or published revision and inspect its actual state. Another session may have changed it; read again and merge on a conflict rather than overwriting it. After an uncertain write, read the saved occurrence before retrying.
 
 After saving, open `/app?workspace=your-plan&tenantId=<tenant>&planSection=meetings&planView=plan&meetingView=list&meeting=<occurrenceId>` and check the agenda renders with working links.
+
+## Comments on the agenda and recap
+
+People comment on a meeting's agenda or recap in the app, and `your_plan_meetings` returns them as `comments` on each meeting (who, when, which one). Read them before you write the next agenda and answer or fold in what they raise. To reply or flag something, discover and describe `your_plan_meeting_comment` (tenant, occurrence, `agenda` or `recap`, body). It saves under your name and shows to everyone who can open the meeting, the client's people too on a client's meeting, so never put pricing, renewal or internal notes in it. Change the agenda itself with `your_plan_meeting_agenda_save`, not with a comment. Each meeting's `fullScreenUrl` opens it full screen; that is the link to send the team.
 
 ## Where the content comes from
 

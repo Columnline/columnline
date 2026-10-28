@@ -32,12 +32,12 @@ Third-party Claude Code marketplace auto-update is off by default. Enable it in 
 ## Start with identity and discover the action
 
 1. Call `columnline_whoami`. If identity is not directly loaded, discover and describe the identity action first; do not proceed without a verified identity. Read the identity, enabled `modules`, and catalog mode. Never infer access from the connection name or a remembered tenant.
-2. Call `columnline_find_tools` with the user's task and an optional returned module name. Search describes only actions this account can use.
-3. Call `columnline_describe_tool` for a selected result. Read its complete schema, description, and safety labels.
-4. Use `columnline_read_tool` for a discovered read-only action, and `columnline_run_tool` for a write or mixed-action tool, with the discovered name and arguments. If an older connection has no read runner, its discovered run tool may execute a described read-only action. A directly available tool with that same name is also valid. Never nest the run tool.
+2. Choose the listed tool that matches the task. Every action this account can use is listed by name, with its schema, description and safety labels. Read them before calling.
+3. Call read-only tools directly. Call a write tool only for what the person asked, after reading the current record.
+4. If no listed tool fits, say so. Do not approximate it with other writes.
 5. Read the saved record and report its receipt or exact missing step. A tool returning successfully does not by itself prove publication, delivery, acceptance, or business results.
 
-For a large catalog, the client sees only these starting tools. Search is how it reaches the rest. A missing action is unavailable; do not invent a name, borrow an owner's login, or bypass the service with a database write.
+A missing action is unavailable; do not invent a name, borrow an owner's login, or bypass the service with a database write.
 
 ## Approach the work
 

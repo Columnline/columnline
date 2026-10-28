@@ -25,8 +25,10 @@ Annotate notes are feedback people pinned to Platform screens. Only the Columnli
 
 List open notes with `annotations_list`, narrowing by page path, `assigned_to: "me"`, or whether the daily sweep filed them to Linear. Open means nobody has resolved it yet, not that the problem is still there.
 
-Before resolving, read the whole note with `annotations_get`. Resolve only when what it asked for is actually done and you can point at the proof. Call `annotations_set_state` through `columnline_run_tool` with the state you just read as `expected_state`, a reason that says what was done and where, and a fresh `request_id`. If the note changed since you read it, nothing happens; read it again. After an unclear result, read the note and retry with the same `request_id`, never a new one.
+Before resolving, read the whole note with `annotations_get`. Resolve only when what it asked for is actually done and you can point at the proof. Call `annotations_set_state` with the state you just read as `expected_state`, a reason that says what was done and where, and a fresh `request_id`. If the note changed since you read it, nothing happens; read it again. After an unclear result, read the note and retry with the same `request_id`, never a new one.
 
 Resolving records your name and reason. It does not fix anything, file a card, or tell the author. Reopen with a reason when a resolved note turns out not to be fixed.
+
+A note, including one left on a client's own website, is not finished until its thread is resolved here: one line on what changed, plus the proof link (the live page, the PR, or the delivery package). Resolve only after the fix is live and checked on the real page. A note that waits on the client stays open, with a reply that says what is needed from them; until the tools can reply on a note, send that reply on the client's usual channel. Report how many notes you resolved and how many stay open, and why.
 
 Generated from columnline-ops .claude/skills/reviewing-columnline-work; edit the source.
