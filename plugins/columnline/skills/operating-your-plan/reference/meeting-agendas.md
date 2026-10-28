@@ -1,6 +1,6 @@
 # Client meeting agendas in Your Plan
 
-The recipe for getting a recurring client check-in ready in one pass. the owner opens the meeting in Your Plan and walks the agenda top to bottom. Every line he might want to show links to the real thing: the Slack message, the email, the PDF, the process map, or the Platform card.
+The recipe for getting a recurring client check-in ready in one sitting. the owner opens the meeting in Your Plan and walks the agenda top to bottom. Every line he might want to show links to the real thing: the Slack message, the email, the PDF, the process map, or the Platform card.
 
 ## The shape the owner wants
 
@@ -40,7 +40,7 @@ An occurrence with no agenda of its own shows the series' last agenda in the app
 
 ## Save the agenda
 
-Discover and describe `your_plan_meeting_agenda_save`. It publishes by default, so pass `publish: false` for preparation or a requested private draft. Publish only when the owner explicitly asks for the agenda to be up. Read the occurrence immediately before saving, preserve its current content and revision requirements, and use only the fields in the live schema. If the action is absent, use the matching Platform control as the same authorized operator. If neither route is available, keep the draft local and report that it was not saved.
+Discover and describe `your_plan_meeting_agenda_save`. It publishes by default, so set `publish: false` for preparation or a requested private draft. Publish only when the owner explicitly asks for the agenda to be up. Read the occurrence immediately before saving, preserve its current content and revision requirements, and use only the fields in the live schema. If the action is absent, use the matching Platform control as the same authorized operator. If neither route is available, keep the draft local and report that it was not saved.
 
 Read back the saved draft or published revision and inspect its actual state. Another session may have changed it; read again and merge on a conflict rather than overwriting it. After an uncertain write, read the saved occurrence before retrying.
 

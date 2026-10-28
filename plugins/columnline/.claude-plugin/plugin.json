@@ -1,6 +1,6 @@
 {
   "name": "columnline",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Connect your AI to the work and knowledge enabled for your Columnline account.",
   "author": {
     "name": "Columnline",
@@ -15,11 +15,6 @@
     "knowledge"
   ],
   "skills": "./skills/",
-  "mcpServers": {
-    "columnline": {
-      "type": "http",
-      "url": "https://api.columnline.dev/mcp/columnline"
-    }
-  },
+  "mcpServers": "./.mcp.json",
   "privacyPolicyUrl": "https://columnline.com/privacy"
 }
