@@ -2,6 +2,6 @@
   "schema": 1,
   "source": "Columnline/columnline-ops",
   "plugin": "columnline",
-  "version": "1.1.5",
-  "contentHash": "fcde3a40d37f6d078d8ec8e3067cba34632acd2b7e200ae38b96d784ccc61ae6"
+  "version": "1.1.6",
+  "contentHash": "dee8a8e4be2dc1a31d51ca88c104ccece76e6ba0652d18336c8222436ae80f22"
 }

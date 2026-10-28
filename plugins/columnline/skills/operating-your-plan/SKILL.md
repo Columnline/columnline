@@ -63,13 +63,13 @@ Each tenant's Your Plan has a **Snapshot** tab, right after Overview. It is the 
 
 Open https://columnline.com/mcp/connect while signed into the Platform. Follow the Codex setup steps, sign in with the same Platform account, and choose Allow saving when editing is intended.
 
-No database key, Linear API key, or 1Password access belongs on the operator's computer. Those credentials remain server-side.
+Everything here runs on the server through the operator's own Columnline sign-in. Nothing needs to be set up on the operator's computer.
 
 Start every new Codex setup with:
 
 > Check my Columnline access, then list Your Plan. Tell me the signed-in name, Platform role, and whether editing is on.
 
-The expected result is the intended signed-in operator’s own identity and live role. Confirm the returned plan read/write capabilities match the task; never require another teammate’s name or credentials. If the identity or role is wrong, stop. If writing is off, reconnect and check **Allow saving**.
+The expected result is the intended signed-in operator’s own identity and live role. Confirm the returned plan read/write capabilities match the task; never act as another teammate. If the identity or role is wrong, stop. If writing is off, reconnect and check **Allow saving**.
 
 ### 2. Read before editing
 
@@ -99,9 +99,9 @@ For Platform content, call `your_plan_save_draft` first. Use `editor.settings` a
 
 **Creating a plan.** There is no create screen in the app, by design. A Linear project inside the Your Plan lanes that has no plan record is created through the shared MCP in two calls: `your_plan_setup_options` with the tenant id returns the tenant's lane projects (each with `hasPlan`), its cards, its configured external delivery records, and its seats; prepare and show the complete client-safe first revision for review. Call `your_plan_create` only after the user explicitly authorizes immediate client publication of that reviewed packet. A preparation or draft request alone does not authorize creation: keep the draft locally or in the authorized project document and report that no Platform plan was saved or published. The authorized `your_plan_create` call takes the chosen `linearProjectId`, one tenant-owned destination, an acceptor seat, and the complete first revision in the same shape `your_plan_save_draft` accepts. When the Work has no card yet, pass `external_destination` (an `https://` link such as the Linear project or a shared folder) with `destinationKind: "other"` and the record is created in the same call. The tool reads the new plan back. **Creation publishes the first revision to the client immediately** (the create RPC writes revision 1 as published; it is never acceptance), so the create packet must be client-safe: internal notes, open commercial questions, and Columnline-only text stay in Linear. The Linear project itself, its Customer, team, milestone, and lane label are still set in Linear first, or the create is refused with the reason.
 
-Discover the live catalog for lane, meeting and lifecycle actions; availability follows the signed-in operator's current role. When an action is absent, use the matching Platform control as the same authorized operator or their Linear OAuth connection. Never require repo credentials or borrow the owner identity. Report an unavailable action honestly.
+Discover the live catalog for lane, meeting and lifecycle actions; availability follows the signed-in operator's current role. When an action is absent, use the matching Platform control as the same authorized operator or their Linear OAuth connection. Never act through repo-only access or as the owner. Report an unavailable action honestly.
 
-The browser at `https://columnline.com/app?workspace=your-plan` remains the visual review surface. It is not required to get credentials or make the structured edit.
+The browser at `https://columnline.com/app?workspace=your-plan` remains the visual review surface. It is not needed to make the structured edit.
 
 When Codex has browser control, it may operate the existing controls for the operator. If browser control is unavailable, give the operator the exact field and value to paste; do not replace the governed action with a direct database write.
 
@@ -109,7 +109,7 @@ When Codex has browser control, it may operate the existing controls for the ope
 
 New Your Plan maps use clear, expanded, stage-level SVGs by default. Make as many current or future maps as the process needs. Do not squeeze the entire process into one unreadable strip.
 
-Prepare a readable process map, then have an authorized internal operator publish its reviewed file through the repo workflow. Use the verified durable URL in the artifact record. This package carries no media-bucket credential or publishing script.
+Prepare a readable process map, then have an authorized internal operator publish its reviewed file through the repo workflow. Use the verified durable URL in the artifact record. This package carries no publishing script.
 
 If the authorized publisher rejects the file type, report the exact failure to the internal operator responsible for publication. Do not change storage policy from this package or disguise the file as another type.
 

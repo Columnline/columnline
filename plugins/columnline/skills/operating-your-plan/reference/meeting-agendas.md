@@ -32,7 +32,7 @@ DM links only open for the people in that DM. That is fine: the owner is the one
 
 ## Find the meeting
 
-Check identity with `columnline_whoami`, then discover and describe `your_plan_meetings` when it is available. Read the intended tenant and occurrence, its current published agenda, newest draft and recap. Use the returned meeting identity, time and source links. If the action is absent, open the meeting in Your Plan under the same person's existing access. Missing access is a gap to report, never a reason to obtain database credentials or another person's identity.
+Check identity with `columnline_whoami`, then discover and describe `your_plan_meetings` when it is available. Read the intended tenant and occurrence, its current published agenda, newest draft and recap. Use the returned meeting identity, time and source links. If the action is absent, open the meeting in Your Plan under the same person's existing access. Missing access is a gap to report, never a reason to go around the connection or act as another person.
 
 An occurrence with no agenda of its own shows the series' last agenda in the app, labeled "From an earlier meeting in the series". That is an old agenda. Always give today's occurrence its own.
 
