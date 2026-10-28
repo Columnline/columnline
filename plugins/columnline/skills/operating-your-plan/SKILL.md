@@ -135,7 +135,7 @@ Report these as separate facts: edited, draft saved, published, Linear reconcile
 
 ## Copy-paste prompt for an operator
 
-> Use `$operating-your-plan` to update Your Plan for **[client] / [Work project]**. First use the `columnline` connection to check my identity and editing access. Then read the complete current plan, including its live Linear-backed lane and milestones. I want to **[describe the change]**. Tell me which system owns it. Save a private draft first, preserve every unrelated field and every accepted revision, and show me the read-back. Publish only if I explicitly approve it. Do not merge or deploy code.
+> Use the operating-your-plan skill to update Your Plan for **[client] / [Work project]**. First use the `columnline` connection to check my identity and editing access. Then read the complete current plan, including its live Linear-backed lane and milestones. I want to **[describe the change]**. Tell me which system owns it. Save a private draft first, preserve every unrelated field and every accepted revision, and show me the read-back. Publish only if I explicitly approve it. Do not merge or deploy code.
 
 ## Stop conditions
 
