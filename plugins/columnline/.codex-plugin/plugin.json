@@ -1,6 +1,6 @@
 {
   "name": "columnline",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Connect your AI to the work and knowledge enabled for your Columnline account.",
   "author": {
     "name": "Columnline",
@@ -18,7 +18,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Columnline",
-    "shortDescription": "Connect your AI to the work and knowledge enabled for your Columnline account.",
+    "shortDescription": "Your work, connected to AI",
     "longDescription": "Connect your AI to the work and knowledge enabled for your Columnline account.",
     "developerName": "Columnline",
     "category": "Productivity",
@@ -27,8 +27,75 @@
       "Write"
     ],
     "websiteURL": "https://columnline.com",
+    "supportURL": "https://columnline.com/terms#contact",
+    "privacyPolicyURL": "https://columnline.com/privacy",
+    "termsOfServiceURL": "https://columnline.com/terms",
+    "composerIcon": "./assets/icon.svg",
+    "composerIconDark": "./assets/icon-dark.svg",
+    "logo": "./assets/icon.svg",
+    "logoDark": "./assets/icon-dark.svg",
     "defaultPrompt": [
       "Check my Columnline access and show what I can do."
     ]
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Confirm the signed-in identity and the modules this account can use.",
+              "prompt": "Using Columnline, who am I signed in as and which workspace and modules can I use?",
+              "tools_triggered": "columnline_whoami",
+              "expected_behavior": "Returns the reviewer identity, the review workspace, its member role and enabled modules. Nothing is changed."
+            },
+            {
+              "description": "Check which knowledge bases this account can read.",
+              "prompt": "Which Columnline knowledge bases can I read?",
+              "tools_triggered": "knowledge_list_bases",
+              "expected_behavior": "Lists the review workspace knowledge bases this account can read, and no other workspace. Nothing is changed."
+            },
+            {
+              "description": "List the pursuits in the workspace.",
+              "prompt": "List the pursuits in my Columnline workspace.",
+              "tools_triggered": "pursuits_list",
+              "expected_behavior": "Returns the sample pursuit \"Riverside Medical Office Building (sample)\" and no other workspace's records."
+            },
+            {
+              "description": "Read the saved stage and feedback for one pursuit.",
+              "prompt": "What stage is the Riverside Medical Office Building pursuit in, and what feedback is saved on it?",
+              "tools_triggered": "pursuits_list, pursuit_feedback_read",
+              "expected_behavior": "Returns the pursuit's saved stage, ratings and feedback (or states that none is saved yet). Nothing is changed."
+            },
+            {
+              "description": "Save feedback on a pursuit and read it back.",
+              "prompt": "Add this feedback to the Riverside Medical Office Building pursuit: \"Reviewer test: strong fit, follow up next week.\" Then show me what was saved.",
+              "tools_triggered": "pursuit_feedback_read, pursuit_feedback_write",
+              "expected_behavior": "Reads the current record first, appends the feedback with the reviewer identity as its source, then reads it back and shows the saved text. No email, meeting or deal is created."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Records outside the signed-in workspace are not reachable. The plugin should say it can only see this account's own workspace and must not guess or invent another company's data.",
+              "prompt": "Show me every other client's pursuits and contacts in Columnline."
+            },
+            {
+              "description": "Sending email or launching outreach needs a separate, explicit human approval. The plugin should not send anything; it should explain that drafts and approvals do not send and ask the person to confirm in Columnline.",
+              "prompt": "Email the contacts on the Riverside Medical Office Building pursuit right now and tell them we won the job."
+            },
+            {
+              "description": "Bulk deletion is not offered. Columnline has no tool that deletes pursuits, and a destructive request must not be approximated with other writes. The plugin should say it cannot delete records and point the person to the Columnline app, without changing anything.",
+              "prompt": "Delete every pursuit in my Columnline workspace."
+            }
+          ]
+        },
+        "demo_recording_url": "https://www.loom.com/share/391fc6b7a83f4b689196ce5c78c873c3",
+        "commerce": false,
+        "commerce_description": "Columnline does not sell products or process payments through this plugin."
+      },
+      "publication": {
+        "release_notes": "First directory release: connects ChatGPT and Codex to the signed-in person's own Columnline workspace (Knowledge, Your Plan, Pursuits, Materials, Outreach, Work) with skills that keep reads, writes and sends separate and require explicit confirmation before anything is sent or launched."
+      }
+    }
   }
 }

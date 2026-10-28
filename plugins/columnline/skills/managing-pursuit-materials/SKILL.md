@@ -35,6 +35,18 @@ A material can be linked to many things at once in its panel's **Linked records*
 
 A record never changes client. When a document made in our library (a proposal to a lead) has to sit in the client's own Your Plan, use **Copy to a client** in the material's panel (Columnline staff, approver in both libraries). It puts a copy of the open version in the client's library and, when a plan item is picked, links it there; the plan item then shows it under **Attached documents**. The original stays in our library with its sends and its win. Copying the same version again finds the first copy. Never re-upload by hand or move rows between tenants.
 
+## Client reports: draft until sent, then published, always with the method
+
+Every report or analysis PDF made for a client (a Zillow cost review, a phone-lines audit, a leads decision) is a Material in **that client's workspace**, as a `research_report`. Treat it like this:
+
+1. **Register it with how it was made.** Write a short method file: the reporting windows and time zone, every data source and query or function, every formula and divisor, the files and email ids the numbers came from, and what is not included yet. Pass it with `register --method-file <file>`. The method belongs to that one version. V2 gets its own. Only Columnline staff ever see it: a client seat gets a blank. It cannot be edited once written, so write it carefully; a corrected method is a new version. To give an already-registered version its method, use `details --material <id> --revision <id> --method-file <file>`.
+2. **It stays a draft until it goes out.** Draft means "not sent yet", nothing more.
+3. **Record the send the moment it goes out.** For the client's own people, use `send --client-team --delivery sent`, one recipient per call. A recipient's address is never matched to a lead: a send is tied to a lead only when you pass its exact `--lead-id` (a proposal needs that for its deal to move to "proposal sent"). A recorded send (`sent` or `used_on_call`), a presentation or an acceptance turns the draft into **Published** and keeps the date it first went out. "Approved" is different: it means agents may use it.
+4. **Link it to what it supports.** Use `link --material <id> --type card|plan|pursuit|lead|list --id <record id>`, and `--remove` to unlink. The label is read from the record itself. Link a report to the analytics card whose numbers it uses, so the two are calculated the same way and can be checked against each other.
+5. **Rerunning it later** is a new version of the same material, built from the last version's method.
+
+The same actions are on the Columnline connector's `materials_write` tool: `method` on register, `details` with `revisionId` plus `method`, `recipientKind: client_team` on send, and `action: link`.
+
 ## The human workflow
 
 Materials is the review library. Generate from the conversation, resolve the context,

@@ -136,7 +136,9 @@ acceptance). Call create only after the user explicitly authorizes immediate cli
 publication of that reviewed packet. A request to prepare or draft alone does not
 authorize creation. Without publication authorization, preserve the draft locally
 or in the authorized project document and report that no Platform plan was saved
-or published.
+or published. In the intake-to-delivery pipeline, create the plan with `hold_for_review`
+so it waits for our own review instead of reaching the client
+(`driving-work-end-to-end/reference/commands.md`, "Put a plan together").
 
 The authorized create packet needs the chosen lane project, one tenant-owned
 destination (or a new `external_destination` link when the Work has no card), an
