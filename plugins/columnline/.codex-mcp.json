@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "columnline": {
+      "type": "http",
+      "url": "https://api.columnline.dev/mcp/openai",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": {
+              "mode": "dcr"
+            }
+          }
+        }
+      }
+    }
+  }
+}
