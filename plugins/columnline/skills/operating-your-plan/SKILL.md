@@ -13,7 +13,7 @@ Your Plan is one client view fed by two systems. Linear decides which Work appea
 
 ## Pipeline commands
 
-The everyday steps on an initiative ("put a plan together", "hold it for an internal review", "deliver the plan", "they said yes", "mark it delivered", "cancel it") have one recipe: driving-work-end-to-end/reference/commands.md. Create a plan with `hold_for_review` so the client is not asked before our own review; `your_plan_hold` pulls back a plan already sent, `your_plan_publish_revision` delivers it, and `your_plan_record_yes` records a yes given by email, call or Slack.
+The everyday steps follow [the canonical workflow](../driving-work-end-to-end/SKILL.md) and [command handoffs](../driving-work-end-to-end/reference/commands.md). AI prepares a plan without automatic project promotion. Creation can publish immediately; `hold_for_review` is not a guarantee that clients never see it. Publication/withdrawal is separate from human send, exact revision receipt and scoped acceptance. Preserve internal/withheld details outside client-readable records.
 
 ## Proposal development
 

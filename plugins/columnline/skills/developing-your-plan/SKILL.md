@@ -137,9 +137,7 @@ acceptance). Call create only after the user explicitly authorizes immediate cli
 publication of that reviewed packet. A request to prepare or draft alone does not
 authorize creation. Without publication authorization, preserve the draft locally
 or in the authorized project document and report that no Platform plan was saved
-or published. In the intake-to-delivery pipeline, create the plan with `hold_for_review`
-so it waits for our own review instead of reaching the client
-(`driving-work-end-to-end/reference/commands.md`, "Put a plan together").
+or published. In the intake-to-delivery pipeline, preparation never authorizes project promotion or immediate plan creation/publication. Prepare client-safe issue-linked plans or Materials for human review/send, following [the shared contract](../driving-work-end-to-end/reference/system.md). A hold after creation does not prevent initial visibility; a Draft label is not a privacy boundary.
 
 The authorized create packet needs the chosen lane project, one tenant-owned
 destination (or a new `external_destination` link when the Work has no card), an
@@ -173,7 +171,7 @@ agenda from unresolved decisions and evidence; do not send it or change invitees
 | Awaiting acceptance | Name the decision-maker, question, and response date or explicit date-needed. Do not auto-change Linear status. |
 | Revisions requested | Record the feedback against the exact revision. Name Columnline's next action; use the existing revisions-requested flow where available. |
 | Proposal declined/deferred | Record the decision, reason and restart condition if applicable. Withdraw only the proposal through a supported action. Never retire accepted service to reject a new revision. |
-| Build delivered | Review evidence, complete the required outcome/closeout acceptance, release build capacity, and agree the next owner. |
+| Build delivered | Prepare the delivery-acceptance package and record the exact human send/actual scoped delivery yes. The later outcome/case-study closeout has its own evidence and acceptance boundary; do not require or fabricate it at build delivery. |
 | Outcome misses | Execute the previously agreed, bounded response; larger work requires a new explicit scope/capacity decision. |
 
 Automatic proposal-to-Linear status synchronization is outside this workflow.
