@@ -2,7 +2,16 @@
 
 The recipe for getting a recurring client check-in ready in one sitting. the owner opens the meeting in Your Plan and walks the agenda top to bottom. Every line he might want to show links to the real thing: the Slack message, the email, the PDF, the process map, or the Platform card.
 
-## The shape the owner wants
+## Read the meeting's "How this meeting runs" note first
+
+Every recurring meeting can carry a note on its series: purpose and who runs it, the sections in order with time boxes, who writes the agenda and when, where the content comes from, any linked client document and its sync rule, and where other agents may add lines. `your_plan_meetings` returns it as `format` on every meeting in the series (pass `title` or `occurrence_id` to keep the answer small), and the app shows it to staff above the agenda.
+
+- **The note wins** over the default shape below and over a routine's own prompt. If they disagree, follow the note and say so in your report.
+- **No note yet** (`format` is null): use the shape below, and say the note is missing in your report. Write or change a note with `your_plan_meeting_format_save` only when the owner asks. Pass `base_format_id` (the `format.id` you read, or null); a 409 means someone saved a newer note, so read again and merge.
+- **Another agent's lines:** add only where the note's "Rules for other agents" allows, keep to its line limit, and never remove someone else's line.
+- **Linked client document:** follow the note's sync rule exactly (which side is the source, when the copy refreshes). Never edit a client's own document or invite unless the owner approved it.
+
+## The shape the owner wants (default when a meeting has no note)
 
 Thirty minutes, time boxes that add up, one line per point:
 

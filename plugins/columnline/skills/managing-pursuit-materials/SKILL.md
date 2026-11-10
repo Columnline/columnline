@@ -1,6 +1,6 @@
 ---
 name: managing-pursuit-materials
-description: Create, revise and register sales and client materials. Use for one-pagers, company overviews, capabilities PDFs, proposals, research reports, decks, scripts and plans. Read the named reference and preserve its approved layout and page count. Before discovery, describe capabilities without inventing prospect scope. Corrections remain revisions of the same Material.
+description: Create, revise and register sales and client materials. Use for one-pagers, company overviews, capabilities PDFs, proposals, research reports, SOPs, decks, scripts and plans. Read the named reference and preserve its approved layout and page count. Before discovery, describe capabilities without inventing prospect scope. Corrections remain revisions of the same Material.
 ---
 
 # Managing Pursuit Materials
@@ -22,7 +22,7 @@ When the user names a previous document, read its authorized Material and exact 
    - **Correction to that document:** register a new version using its exact `materialId`, preserving its role, format and source revision. Include short change notes.
    - **Different approach:** create a separate format in the same category.
    - **Purpose-built one-off:** standalone is valid. A format is not required.
-4. Use the existing generating skill or the format's saved recipe. Preserve a requested layout, pictures and source copy. Research reports use `research_report`; proposals and quotes use `proposal_quote`; call scripts use `call_script`. Native Your Plan meeting agendas remain on the meeting occurrence; only substantive sales scripts or separate deliverables belong here.
+4. Use the existing generating skill or the format's saved recipe. Preserve a requested layout, pictures and source copy. Research reports use `research_report`; proposals and quotes use `proposal_quote`; call scripts use `call_script`; SOPs (standard operating procedures, usually written for one client's process) use `sop`, registered in that client's workspace and corrected as revisions of the same Material. Native Your Plan meeting agendas remain on the meeting occurrence; only substantive sales scripts or separate deliverables belong here.
 5. Inspect the actual rendered asset. Register it as a draft before returning it. Save purpose, audience, relevant links and optional notes. Return the Materials link and exact material/revision IDs. Registration does not create email/calendar activity and does not approve an asset for agents.
 
 Resolve the current approved format and its recipe from Materials.

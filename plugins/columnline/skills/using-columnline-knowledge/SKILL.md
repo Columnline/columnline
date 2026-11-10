@@ -1,6 +1,6 @@
 ---
 name: using-columnline-knowledge
-description: Find authorized Knowledge, follow citations, and check changing facts in their live source. Use for business context, prior decisions, call preparation, and source-backed research.
+description: Find authorized Knowledge, follow citations, and check changing facts in their live source. Use for general business advice, business-model questions, growth-stage diagnosis, what to do next in a business, prior decisions, call preparation, and source-backed research.
 ---
 
 # Using Columnline Knowledge
@@ -111,8 +111,11 @@ page that actually owns the context.
 
 ### Business Model routing
 
-For offer design, pricing, sales, GTM, monetization, client framing, renewal,
-retention, stickiness, or operating-constraint questions, route among the bases
+For general business advice and business-model questions, including “what
+should I do next in my business?”, start with the authorized Business Model
+base even when the user does not name Hormozi or a framework. The same route
+applies to offer design, pricing, sales, GTM, monetization, client framing,
+renewal, retention, stickiness, and operating constraints. Route among the bases
 `knowledge_list_bases` actually returned for this identity. The base names below
 are search hints, not a promise that a base exists or is authorized; if one is
 not in your authorized list, skip it and say so.
@@ -134,6 +137,15 @@ Cross-wiki relationships are links, not copies. Business Model owns the source
 framework. Founder or client Knowledge owns the durable application to the
 current business. CRM, Linear, finance, code, and runtime still own changing
 state.
+
+### Roadmap and business-stage questions
+
+When the question is about the Scaling Roadmap, where the business is now,
+what comes next, or a constraint that changes with business stage, read
+[the roadmap workflow](reference/scaling-roadmap.md). It keeps the whole
+roadmap available while diagnosing the current constraint from evidence.
+Do not treat a preselected PDF edition as a diagnosis, or a linked video as
+a transcript that has been read.
 
 ### Recover the connection before giving up
 
