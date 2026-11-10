@@ -69,6 +69,8 @@ A yes to this plan covers checking, enriching and saving the permission-cleared 
 
 ## Step 4: Campaign
 
+When a client reviews the copy in a doc, follow keeping-client-copy-in-sync: one doc per campaign group, a map of which campaign and step holds each email at the top, and its checker passing before anyone calls the campaign ready. Any split, merge or swap of emails updates that doc the same day.
+
 Write within the recipients' permitted purpose and requested frequency. Workspace copy rules cannot override recipient permission or opt-outs:
 
 - Use only the number and timing of messages the audience agreed to. Do not invent an automatic follow-up sequence for an inquiry.
@@ -87,7 +89,7 @@ Make the batch with `outreach_batch_create`: name, the approach in one line, and
 
 ## Step 6: Launch gate
 
-Launching sends real email. Before it, recheck permission and suppression for the exact audience and show each campaign, recipient count, copy, opt-out, sender account and first sending time. Launch only on an explicit "launch it" from the person, then read the campaign state back. A review approval, a draft, or a batch is not a launch. Human approval never clears an audience that fails the recipient-permission gate.
+Launching sends real email. Before it, and before each later send window, run the copy sync check when a client reviewed the copy in a doc. Before it, recheck permission and suppression for the exact audience and show each campaign, recipient count, copy, opt-out, sender account and first sending time. Launch only on an explicit "launch it" from the person, then read the campaign state back. A review approval, a draft, or a batch is not a launch. Human approval never clears an audience that fails the recipient-permission gate.
 
 ## Step 7: Watch it
 

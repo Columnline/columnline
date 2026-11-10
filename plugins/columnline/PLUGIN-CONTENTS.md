@@ -1,6 +1,6 @@
 # Package contents
 
-Version: 1.1.8
+Version: 1.1.9
 
 - using-columnline
 - developing-your-plan

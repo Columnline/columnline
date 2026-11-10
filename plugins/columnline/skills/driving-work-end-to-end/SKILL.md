@@ -15,6 +15,8 @@ Read [the shared system contract](reference/system.md) on every run. It owns sta
 
 Keep the canonical tenant, issue, source message/thread and parent project separate. A child ask can have its own plan, revisions and acceptance inside an accepted project. A parent's milestone or approval never substitutes for the child's commitment or scope.
 
+Every worker follows the finish rule its check-in returns (the owner, Nov 3): assume nobody comes back mid-run, take its stage's job all the way to the next human gate in one run, and leave that gate ready (draft saved, date proposed, receipt logged) rather than reporting what could be done. The gates in [the shared system contract](reference/system.md) stay exactly as they are.
+
 ## Choose the stage
 
 | Situation | Focused skill | Responsibility |
@@ -36,6 +38,8 @@ Six shared workers own acknowledgment, plan preparation, plan acceptance, accept
 ## Everyday requests
 
 “Put a plan together” means investigate and prepare the appropriate short plan/PDF while retaining the issue. It does not authorize a new Linear project or immediate publication. “Deliver the plan” still requires human review/send and an actual receipt for the exact revision. “They said yes” needs the actual scoped response; it queues work without starting a build. Preparation, publication, delivery, acceptance and outcome proof are separate facts.
+
+An agent that owns one objective on an existing initiative, on a timer, on demand or both, is a **Mission**: read [missions](reference/missions.md) for how every run checks in, loads context, reports and checks out.
 
 Read [command handoffs](reference/commands.md) for these requests and worker briefs when updating an already-authorized routine. The existing Pipeline desk handles dates/calendar only, using each issue's own commitment. It does not acknowledge, plan, chase acceptance, assign builders or move stages. Several ordered Main/Flex projects are allowed; engineering cycles are Linear initiatives grouping projects, with native Cycles unused.
 

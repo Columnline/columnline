@@ -1,6 +1,6 @@
 {
   "name": "columnline",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Connect your AI to the work and knowledge enabled for your Columnline account.",
   "author": {
     "name": "Columnline",
@@ -30,10 +30,10 @@
     "supportURL": "https://columnline.com/terms#contact",
     "privacyPolicyURL": "https://columnline.com/privacy",
     "termsOfServiceURL": "https://columnline.com/terms",
-    "composerIcon": "./assets/icon.svg",
-    "composerIconDark": "./assets/icon-dark.svg",
-    "logo": "./assets/icon.svg",
-    "logoDark": "./assets/icon-dark.svg",
+    "composerIcon": "./assets/icon.png",
+    "composerIconDark": "./assets/icon-dark.png",
+    "logo": "./assets/icon.png",
+    "logoDark": "./assets/icon-dark.png",
     "defaultPrompt": [
       "Check my Columnline access and show what I can do."
     ]
